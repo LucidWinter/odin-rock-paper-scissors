@@ -1,40 +1,61 @@
+let playerWin = 0
+let computerWin = 0
+
 function userPlay() {
     let userChoice = prompt('Please enter in Rock, Paper or Scissor')
-
     return userChoice.toLowerCase()
 }
 
 function computerPlay() {
     let rand = Math.floor(Math.random() * 3)
-    let computerChoice
 
     switch (rand) {
         case 0:
-            return computerChoice = 'rock'
+            return 'rock'
         case 1:
-            return computerChoice = 'paper'
+            return 'paper'
         case 2:
-            return computerChoice = 'scissor'
+            return 'scissor'
     }
 }
 
 function playGame(playerSelection, computerSelection) {
-    let winner
-
     if (playerSelection === computerSelection) {
-        return winner = `You tied! You both selected ${playerSelection}`
+        return `You tied! You both selected ${playerSelection}`
     } else if (
-        (playerSelection === 'rock' && computerSelection === 'paper') ||
-        (playerSelection === 'paper' && computerSelection === 'scissor') ||
-        (playerSelection === 'scissor' && computerSelection === 'rock')) {
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'scissor' && computerSelection === 'paper') ||
+        (playerSelection === 'rock' && computerSelection === 'scissor')) {
 
-        return winner = `You lost! ${computerSelection} beats ${playerSelection}`
+        playerWin++
+        return `You win! ${playerSelection} beats ${computerSelection}`
     } else {
-        return winner = `You win! ${playerSelection} beats ${computerSelection}`
+        computerWin++
+        return `You lost! ${computerSelection} beats ${playerSelection}`
     }
 }
 
-const playerSelection = userPlay();
-const computerSelection = computerPlay();
-console.log(playGame(playerSelection, computerSelection))
+function checkWinner() {
+    if (playerWin > computerWin) {
+        return 'You won against the computer'
+    } else if (computerWin > playerWin) {
+        return 'You lost to the computer'
+    } else {
+        return 'You tied with the computer'
+    }
+}
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = userPlay();
+        const computerSelection = computerPlay();
+        console.log(playGame(playerSelection, computerSelection))
+    }
+
+    console.log(checkWinner());
+}
+
+game()
+
+
 
