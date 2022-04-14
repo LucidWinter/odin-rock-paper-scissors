@@ -19,7 +19,7 @@ function computerPlay() {
     }
 }
 
-function playGame(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return `You tied! You both selected ${playerSelection}`
     } else if (
@@ -49,7 +49,7 @@ function game() {
     for (let i = 0; i < 5; i++) {
         const playerSelection = userPlay();
         const computerSelection = computerPlay();
-        console.log(playGame(playerSelection, computerSelection))
+        console.log(playRound(playerSelection, computerSelection))
     }
 
     console.log(checkWinner());
