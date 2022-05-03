@@ -1,61 +1,58 @@
-let playerWin = 0
-let computerWin = 0
+//keeps tracks of rounds won
+let playerWin = 0;
+let computerWin = 0;
 
-function userPlay() {
-    let userChoice = prompt('Please enter in Rock, Paper or Scissor')
-    return userChoice.toLowerCase()
-}
+const buttons = document.querySelectorAll('button');
+const result = document.querySelector('#result');
 
 function computerPlay() {
-    let rand = Math.floor(Math.random() * 3)
+    let rand = Math.floor(Math.random() * 3);
 
     switch (rand) {
         case 0:
-            return 'rock'
+            return 'rock';
         case 1:
-            return 'paper'
+            return 'paper';
         case 2:
-            return 'scissor'
+            return 'scissor';
     }
 }
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return `You tied! You both selected ${playerSelection}`
+        return `You tied! You both selected ${playerSelection}`;
     } else if (
         (playerSelection === 'paper' && computerSelection === 'rock') ||
         (playerSelection === 'scissor' && computerSelection === 'paper') ||
         (playerSelection === 'rock' && computerSelection === 'scissor')) {
 
-        playerWin++
-        return `You win! ${playerSelection} beats ${computerSelection}`
+        playerWin++;
+        return `You win! ${playerSelection} beats ${computerSelection}`;
     } else {
-        computerWin++
-        return `You lost! ${computerSelection} beats ${playerSelection}`
+        computerWin++;
+        return `You lost! ${computerSelection} beats ${playerSelection}`;
     }
 }
 
 function checkWinner() {
     if (playerWin > computerWin) {
-        return 'You won against the computer'
+        return 'You won against the computer';
     } else if (computerWin > playerWin) {
-        return 'You lost to the computer'
+        return 'You lost to the computer';
     } else {
-        return 'You tied with the computer'
+        return 'You tied with the computer';
     }
 }
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = userPlay();
-        const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection))
-    }
+function game(e) {
+    const playerSelection = e.target.id;
+    const computerSelection = computerPlay();
 
-    console.log(checkWinner());
+    result.innerText = ""
+    result.append(playRound(playerSelection, computerSelection));
 }
 
-game()
+buttons.forEach(button => button.addEventListener('click', game));
 
 
 
