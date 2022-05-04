@@ -4,6 +4,8 @@ let computerWin = 0;
 
 const buttons = document.querySelectorAll('button');
 const result = document.querySelector('#result');
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
 
 function computerPlay() {
     let rand = Math.floor(Math.random() * 3);
@@ -26,10 +28,10 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === 'scissor' && computerSelection === 'paper') ||
         (playerSelection === 'rock' && computerSelection === 'scissor')) {
 
-        playerWin++;
+        playerWin += 1;
         return `You win! ${playerSelection} beats ${computerSelection}`;
     } else {
-        computerWin++;
+        computerWin += 1;
         return `You lost! ${computerSelection} beats ${playerSelection}`;
     }
 }
@@ -48,8 +50,14 @@ function game(e) {
     const playerSelection = e.target.id;
     const computerSelection = computerPlay();
 
-    result.innerText = ""
+    result.innerText = '';
     result.append(playRound(playerSelection, computerSelection));
+
+    playerScore.innerText = '';
+    playerScore.append(playerWin);
+
+    computerScore.innerText = '';
+    computerScore.append(computerWin);
 }
 
 buttons.forEach(button => button.addEventListener('click', game));
