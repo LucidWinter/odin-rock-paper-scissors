@@ -28,10 +28,10 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === 'scissor' && computerSelection === 'paper') ||
         (playerSelection === 'rock' && computerSelection === 'scissor')) {
 
-        playerWin += 1;
+        playerWin++;
         return `You win! ${playerSelection} beats ${computerSelection}`;
     } else {
-        computerWin += 1;
+        computerWin++;
         return `You lost! ${computerSelection} beats ${playerSelection}`;
     }
 }
@@ -58,6 +58,12 @@ function game(e) {
 
     computerScore.innerText = '';
     computerScore.append(computerWin);
+
+    if (playerWin == 5 || computerWin === 5) {
+        result.innerText = '';
+        result.append(checkWinner());
+        buttons.forEach(button => button.removeEventListener('click', game));
+    }
 }
 
 buttons.forEach(button => button.addEventListener('click', game));
