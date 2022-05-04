@@ -39,10 +39,8 @@ function playRound(playerSelection, computerSelection) {
 function checkWinner() {
     if (playerWin > computerWin) {
         return 'You won against the computer';
-    } else if (computerWin > playerWin) {
-        return 'You lost to the computer';
     } else {
-        return 'You tied with the computer';
+        return 'You lost to the computer';
     }
 }
 
@@ -59,7 +57,7 @@ function game(e) {
     computerScore.innerText = '';
     computerScore.append(computerWin);
 
-    if (playerWin == 5 || computerWin === 5) {
+    if (playerWin === 5 || computerWin === 5) {
         result.innerText = '';
         result.append(checkWinner());
         buttons.forEach(button => button.removeEventListener('click', game));
