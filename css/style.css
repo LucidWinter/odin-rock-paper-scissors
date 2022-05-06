@@ -1,0 +1,58 @@
+body {
+    background-color: bisque;
+    height: 100vh;
+    display: flex;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#main-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#heading {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#btn-container {
+    margin: 20px;
+}
+
+#rock {
+    background: url('../img/rock.png') no-repeat center center;
+}
+
+#paper {
+    background: url('../img/paper.png') no-repeat center center;
+}
+
+#scissor {
+    background: url('../img/scissor.png') no-repeat center center;
+}
+
+#rock,
+#paper,
+#scissor {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    transition: all .07s ease;
+}
+
+#rock:hover,
+#paper:hover,
+#scissor:hover {
+    transform: scale(1.1);
+}
+
+#score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -2,10 +2,15 @@
 let playerWin = 0;
 let computerWin = 0;
 
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.btn');
 const result = document.querySelector('#result');
 const playerScore = document.querySelector('#playerScore');
 const computerScore = document.querySelector('#computerScore');
+const reloadGame = document.querySelector('#reloadGame');
+const restartGame = document.createElement('button');
+
+buttons.forEach(button => button.addEventListener('click', game));
+
 
 function computerPlay() {
     let rand = Math.floor(Math.random() * 3);
@@ -58,13 +63,35 @@ function game(e) {
     computerScore.append(computerWin);
 
     if (playerWin === 5 || computerWin === 5) {
+        restartGame.textContent = 'Play again?';
+        restartGame.id = 'restartGame';
+        restartGame.addEventListener('click', resetGame);
+        restartGame.hidden = false;
+
         result.innerText = '';
         result.append(checkWinner());
         buttons.forEach(button => button.removeEventListener('click', game));
+
+        reloadGame.appendChild(restartGame);
     }
 }
 
-buttons.forEach(button => button.addEventListener('click', game));
+function resetGame() {
+    playerWin = 0;
+    computerWin = 0;
+
+    result.innerText = '';
+
+    playerScore.innerText = '';
+    playerScore.append(playerWin);
+
+    computerScore.innerText = '';
+    computerScore.append(computerWin);
+
+    buttons.forEach(button => button.addEventListener('click', game));
+
+    restartGame.hidden = true
+}
 
 
 
